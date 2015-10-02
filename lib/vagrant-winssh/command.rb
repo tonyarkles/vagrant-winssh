@@ -7,7 +7,7 @@ module VagrantWinssh
   class Command < Vagrant.plugin(2, :command)
     def which(cmd)
       exts = ENV['PATHEXT'] ? ENV['PATHEXT'].split(';') : ['']
-      path = ENV['PATH'] + File::PATH_SEPARATOR + File::dirname(__FILE__)
+      path = ENV['PATH'] + File::PATH_SEPARATOR + File.join(File::dirname(__FILE__), "windows")
       path.split(File::PATH_SEPARATOR).each do |path|
         exts.each { |ext|
           exe = File.join(path, "#{cmd}#{ext}")
