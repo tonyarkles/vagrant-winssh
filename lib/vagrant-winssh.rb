@@ -1,6 +1,3 @@
+require 'vagrant-winssh/plugin'
+require 'vagrant-winssh/command'
 require "vagrant-winssh/version"
-
-module VagrantWinssh
-    # Your code goes here...
-  end
-end
