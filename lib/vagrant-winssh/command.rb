@@ -2,10 +2,13 @@ require 'rubygems'
 require 'optparse'
 
 module VagrantWinssh
+  SSH_BINARY_NAME = "ssh"
+
   class Command < Vagrant.plugin(2, :command)
     def which(cmd)
       exts = ENV['PATHEXT'] ? ENV['PATHEXT'].split(';') : ['']
-      ENV['PATH'].split(File::PATH_SEPARATOR).each do |path|
+      path = ENV['PATH'] + File::PATH_SEPARATOR + File::dirname(__FILE__)
+      path.split(File::PATH_SEPARATOR).each do |path|
         exts.each { |ext|
           exe = File.join(path, "#{cmd}#{ext}")
           return exe if File.executable?(exe) && !File.directory?(exe)
@@ -15,7 +18,7 @@ module VagrantWinssh
     end
 
     def execute
-      ssh_path = which("ssh")
+      ssh_path = which(SSH_BINARY_NAME)
       if ssh_path.nil?
         @env.ui.error "Couldn't find an SSH binary"
       else
