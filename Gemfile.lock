@@ -23,7 +23,7 @@ GIT
 PATH
   remote: .
   specs:
-    vagrant-winssh (0.0.3)
+    vagrant-winssh (0.0.4)
 
 GEM
   remote: https://rubygems.org/
